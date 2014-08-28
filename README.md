@@ -1,3 +1,3 @@
 # Neatline / Vis.js Timeline
 
-A Marionette module that implements the [Vis.js timeline](http://visjs.org/#timeline) layout into Neatline.
+A Marionette module for Neatline that displays records with dates on the [Vis.js timeline](http://visjs.org/#timeline) layout.
