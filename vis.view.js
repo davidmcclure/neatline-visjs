@@ -93,9 +93,9 @@ Neatline.module('Vis', function(Vis) {
         var a = _.difference(args.items, this.selected);
         var r = _.difference(this.selected, args.items);
 
-        // Select the added IDs, unselect the removed.
-        _.each(a, _.bind(this.publishSelect, this));
+        // Unseleft removed IDs, select added IDs.
         _.each(r, _.bind(this.publishUnselect, this));
+        _.each(a, _.bind(this.publishSelect, this));
 
         // Set the new IDs.
         this.selected = args.items;
