@@ -93,12 +93,15 @@ Neatline.module('Vis', function(Vis) {
         var a = _.difference(args.items, this.selected);
         var r = _.difference(this.selected, args.items);
 
-        // Unseleft removed IDs, select added IDs.
+        // Unselect removed IDs, select added IDs.
         _.each(r, _.bind(this.publishUnselect, this));
         _.each(a, _.bind(this.publishSelect, this));
 
         // Set the new IDs.
         this.selected = args.items;
+
+        // Update the `selected` class.
+        this.$el.toggleClass('selected', !_.isEmpty(this.selected));
 
       }, this));
 
