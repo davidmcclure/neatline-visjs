@@ -37,7 +37,6 @@ Neatline.module('Vis', function(Vis) {
       this._initTimeline();
       this._initGroups();
       this._initSelect();
-      this._initScale();
 
     },
 
@@ -94,29 +93,6 @@ Neatline.module('Vis', function(Vis) {
 
         // Update the `selected` class.
         this.$el.toggleClass('selected', !_.isEmpty(this.selected));
-
-      }, this));
-
-    },
-
-
-    /**
-     * TODO|dev
-     */
-    _initScale: function() {
-
-      // When the timeline is scrolled.
-      this.timeline.on('rangechanged', _.bind(function(args) {
-
-        var dataHeight = $(this.timeline.body.dom.center).height();
-        var viewHeight = $(window).height();
-
-        if (dataHeight > viewHeight) {
-          var ratio = viewHeight / dataHeight;
-          this.$el.css('-webkit-transform', 'scale('+ratio+')');
-          this.$el.css('-moz-transform', 'scale('+ratio+')');
-          this.timeline.setOptions({ height: null});
-        }
 
       }, this));
 
