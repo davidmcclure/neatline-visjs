@@ -24,6 +24,10 @@ Neatline.module('Vis', function(Vis) {
 
     ],
 
+    commands: [
+      'setOptions'
+    ],
+
 
     /**
      * Create the view.
@@ -76,6 +80,14 @@ Neatline.module('Vis', function(Vis) {
      */
     center: function() {
       this.view.centerMap();
+    },
+
+
+    /**
+     * Set configuration options on the timeline instance.
+     */
+    setOptions: function(options) {
+      this.view.timeline.setOptions(options);
     }
 
 
