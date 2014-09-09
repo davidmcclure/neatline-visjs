@@ -204,22 +204,6 @@ Neatline.module('Vis', function(Vis) {
 
 
     /**
-     * Shrink the timeline.
-     */
-    minimize: function() {
-      this.$el.addClass('minimized');
-    },
-
-
-    /**
-     * Expand the timeline.
-     */
-    maximize: function() {
-      this.$el.removeClass('minimized');
-    },
-
-
-    /**
      * Broadcast a public event.
      *
      * @param {String} event
@@ -244,7 +228,7 @@ Neatline.module('Vis', function(Vis) {
     focusByModel: function(model) {
 
       // Break if no event exists.
-      if (_.isNull(this.events.get(model.id))) return;
+      if (!this.modelHasEvent(model)) return;
 
       // Select the model.
       this.timeline.focus(model.id);
@@ -293,6 +277,36 @@ Neatline.module('Vis', function(Vis) {
       var height = this.$el.height();
       Neatline.request('MAP:getMap').pan(0, height/2);
     },
+
+
+    /**
+     * Shrink the timeline.
+     */
+    minimize: function() {
+      this.$el.addClass('minimized');
+    },
+
+
+    /**
+     * Expand the timeline.
+     */
+    maximize: function() {
+      this.$el.removeClass('minimized');
+    },
+
+
+    // HELPERS
+    // ------------------------------------------------------------------------
+
+
+    /**
+     * Does a model have an event on the timeline?
+     *
+     * @param {Object} model
+     */
+    modelHasEvent: function(model) {
+      if (this.events && !_.isNull(this.events.get(model.id)));
+    }
 
 
   });
