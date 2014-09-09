@@ -36,7 +36,6 @@ Neatline.module('Vis', function(Vis) {
       // Create timeline.
       this._initTimeline();
       this._initGroups();
-      this._initMaximize();
       this._initSelect();
 
     },
@@ -68,14 +67,6 @@ Neatline.module('Vis', function(Vis) {
       // Add to the timeline.
       this.timeline.setGroups(groups);
 
-    },
-
-
-    /**
-     * Maximize when the zoom level is changed.
-     */
-    _initMaximize: function() {
-      this.timeline.on('rangechanged', _.bind(this.maximize, this));
     },
 
 
