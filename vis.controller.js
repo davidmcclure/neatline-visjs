@@ -45,7 +45,8 @@ Neatline.module('Vis', function(Vis) {
      */
     select: function(args) {
       if (args.source !== this.slug) {
-        this.view.renderSelect(args.model)
+        this.view.renderSelect(args.model);
+        this.view.maximize();
       }
     },
 
@@ -57,7 +58,7 @@ Neatline.module('Vis', function(Vis) {
      */
     unselect: function(args) {
       if (!_.contains([this.slug, 'EVENTS'], args.source)) {
-        this.view.renderUnselect(args.model)
+        this.view.renderUnselect(args.model);
       }
     },
 
