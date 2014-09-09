@@ -230,9 +230,6 @@ Neatline.module('Vis', function(Vis) {
       // Break if no event exists.
       if (!this.modelHasEvent(model)) return;
 
-      // Select the model.
-      this.timeline.focus(model.id);
-
       // Get the start/end dates.
       d1 = moment(model.get('start_date'));
       d2 = moment(model.get('end_date'));
@@ -305,7 +302,7 @@ Neatline.module('Vis', function(Vis) {
      * @param {Object} model
      */
     modelHasEvent: function(model) {
-      if (this.events && !_.isNull(this.events.get(model.id)));
+      return this.events && !_.isNull(this.events.get(model.id));
     }
 
 
