@@ -125,9 +125,9 @@ Neatline.module('Vis', function(Vis) {
      */
     ingest: function(records) {
 
-      var events = new vis.DataSet();
+      this.events = new vis.DataSet();
 
-      records.each(function(record) {
+      records.each(_.bind(function(record) {
 
         // Pass if no start date.
         var start = record.get('start_date');
@@ -152,12 +152,12 @@ Neatline.module('Vis', function(Vis) {
           }
         });
 
-        events.add(event);
+        this.events.add(event);
 
-      });
+      }, this));
 
       // Render the collection.
-      this.timeline.setItems(events);
+      this.timeline.setItems(this.events);
 
     },
 
@@ -249,6 +249,13 @@ Neatline.module('Vis', function(Vis) {
      */
     focusByModel: function(model) {
 
+      // Break if no event exists.
+      if (_.isNull(this.events.get(model.id))) return;
+
+      // Select the model.
+      this.timeline.focus(model.id);
+
+      // Get the start/end dates.
       d1 = moment(model.get('start_date'));
       d2 = moment(model.get('end_date'));
 
