@@ -139,9 +139,6 @@ Neatline.module('Vis', function(Vis) {
         var end = record.get('end_date');
         if (end) event.end = end;
 
-        // Set the point/span class.
-        event.className = end ? 'span': 'point';
-
         // Set the group.
         _.each(Vis.config.groups, function(band) {
           if (record.hasTag(band.tag)) {
