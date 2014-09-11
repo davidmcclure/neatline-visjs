@@ -129,15 +129,18 @@ Neatline.module('Vis', function(Vis) {
 
         // Default parameters.
         var event = {
-          id:       record.id,
-          content:  record.get('title'),
-          start:    start,
-          model:    record
+          id:         record.id,
+          content:    record.get('title'),
+          start:      start,
+          model:      record
         };
 
-        // If defined, add end date.
+        // Try to get an end date.
         var end = record.get('end_date');
-        if (end) event['end'] = end;
+        if (end) event.end = end;
+
+        // Set the point/span class.
+        event.className = end ? 'span': 'point';
 
         // Set the group.
         _.each(Vis.config.groups, function(band) {
