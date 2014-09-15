@@ -36,6 +36,7 @@ Neatline.module('Vis', function(Vis) {
       // Create timeline.
       this._initTimeline();
       this._initGroups();
+      this._initStacking();
       this._initSelect();
 
     },
@@ -66,6 +67,35 @@ Neatline.module('Vis', function(Vis) {
 
       // Add to the timeline.
       this.timeline.setGroups(groups);
+
+    },
+
+
+    /**
+     * If defined in the configuration file, flip on stacking when the
+     * timeline zooms below a certain level.
+     */
+    _initStacking: function() {
+
+      var opts = Vis.config.stacking;
+      if (!_.isObject(opts)) return;
+
+      // When the timeline is zoomed.
+      this.timeline.on('rangechanged', _.bind(function(e) {
+
+        // Get the start/end dates.
+        var range = this.timeline.getWindow();
+
+        // Measure the duration between the two.
+        var delta = moment(range.end).diff(
+          moment(range.start), opts.unit
+        );
+
+        // Toggle stacking on the timeline.
+        var stack = delta < opts.duration ? true : false;
+        this.timeline.setOptions({ stack: stack });
+
+      }, this));
 
     },
 
