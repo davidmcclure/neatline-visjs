@@ -231,6 +231,7 @@ Neatline.module('Vis', function(Vis) {
     renderUnselect: function(model) {
       this.selected = _.without(this.selected, model.id);
       this.timeline.setSelection(this.selected);
+      this.timeline.emit('select', this.selected);
     },
 
 
