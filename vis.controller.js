@@ -45,8 +45,18 @@ Neatline.module('Vis', function(Vis) {
      */
     select: function(args) {
       if (args.source !== this.slug) {
-        this.view.renderSelect(args.model);
+
+        // On startup, wait for the events to load.
+        if (!this.view.items) {
+          this.view.once('loaded', _.bind(function() {
+            this.view.renderSelect(args.model);
+          }, this));
+        }
+
+        // Otherwise, select immediately.
+        else this.view.renderSelect(args.model);
         this.view.maximize();
+
       }
     },
 

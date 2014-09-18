@@ -182,6 +182,7 @@ Neatline.module('Vis', function(Vis) {
 
       // Render the collection.
       this.timeline.setItems(this.items);
+      this.trigger('loaded');
 
     },
 
