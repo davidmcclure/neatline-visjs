@@ -72,7 +72,7 @@ Neatline.module('Vis', function(Vis) {
 
 
     /**
-     * If defined in the configuration file, flip on stacking when the
+     * If enabled in the configuration file, activate event stacking when the
      * timeline zooms below a certain level.
      */
     _initStacking: function() {
@@ -149,7 +149,7 @@ Neatline.module('Vis', function(Vis) {
      */
     ingest: function(records) {
 
-      this.events = new vis.DataSet();
+      this.items = new vis.DataSet();
 
       records.each(_.bind(function(record) {
 
@@ -176,12 +176,12 @@ Neatline.module('Vis', function(Vis) {
           }
         });
 
-        this.events.add(event);
+        this.items.add(event);
 
       }, this));
 
       // Render the collection.
-      this.timeline.setItems(this.events);
+      this.timeline.setItems(this.items);
 
     },
 
@@ -332,7 +332,7 @@ Neatline.module('Vis', function(Vis) {
      * @param {Object} model
      */
     modelHasEvent: function(model) {
-      return this.events && !_.isNull(this.events.get(model.id));
+      return this.items && !_.isNull(this.items.get(model.id));
     }
 
 
