@@ -15,7 +15,8 @@ Neatline.module('Vis', function(Vis) {
     id: 'timeline',
 
     events: {
-      'click': 'maximize'
+      'click': 'maximize',
+      'touchstart': 'maximize'
     },
 
 
